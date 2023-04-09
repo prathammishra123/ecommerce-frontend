@@ -1,11 +1,11 @@
-import React from 'react'
+import React , { useEffect }from 'react'
 import "./slide.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { products } from './productdata';
+// import { products } from './productdata';// this data was coming from static file but now since we have it dynamically so no use of this.
 import { Divider } from '@mui/material';
 import { NavLink } from "react-router-dom";
-
+import{useDispatch,useSelector} from "react-redux";
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -22,7 +22,6 @@ const responsive = {
 };
 
 const Slide = ({title,products}) => {
-
 
     return (
         <>
