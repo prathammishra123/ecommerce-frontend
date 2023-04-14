@@ -55,7 +55,7 @@ const Buynow = () =>
                                                     <p className="unusuall">Usually dispatched in 8 days.</p>
                                                     <p>Eligible for FREE Shipping</p>
                                                     <img src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px-2x._CB485942108_.png" alt="logo" />
-                                                    <Option />
+                                                    <Option deletedata={e.id} get={getdatabuy} />
                                                 </div>
                                                 <h3 className="item_price">₹{e.price.cost}.00</h3>
                                             </div>

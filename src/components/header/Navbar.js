@@ -1,14 +1,23 @@
 // rafce command for creating basic structure of a component  using es7 extension.
-import { React, useContext ,useEffect} from "react";
+import { React, useContext ,useEffect,useState} from "react";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import "./Navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Avatar from "@mui/material/Avatar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Logincontext } from "../Context/ContextProvider";
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Drawer, IconButton, List, ListItem, MenuItem } from '@mui/material';
+import Rightheader from './Rightheader';
+import LogoutIcon from '@mui/icons-material/Logout';
 const Navbar = () => {
   const { account, setAccount } = useContext(Logincontext);
+  const history= useNavigate();
+  const [dropen, setDropen] = useState(false);
   const getdetailsvaliduser = async () => {
     const res = await fetch("http://localhost:8005/validuser", {
         method: "GET",
@@ -18,6 +27,7 @@ const Navbar = () => {
         },
         credentials: "include"
     });
+  
 
     const data = await res.json();
     // console.log(data);
@@ -29,7 +39,50 @@ const Navbar = () => {
         setAccount(data);
     }
 }
+const [open, setOpen] = useState(false);
+const handleClick = (event) => {
+  setOpen(event.currentTarget);
+}; 
+const handelopen = () => {
+  // console.log("te");
+  setDropen(true);
+}
+const handleClose = () => {
+  // console.log("te");
 
+  setOpen(false)
+};
+const handleClosedr = () => {
+  setDropen(false);
+}
+
+const logoutuser = async () => {
+  const res2 = await fetch("http://localhost:8005/logout", {
+      method: "GET",
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+      },
+      credentials: "include"
+  });
+
+
+  const data2 = await res2.json();
+  // console.log(data2);
+
+  if (res2.status !== 201) {
+      // console.log("first login");
+  } else {
+      // console.log("cart add ho gya hain");
+      setAccount(false);
+      toast.success("user Logout 😃!", {
+        position: "top-center"
+    });
+      history("/");
+      
+      
+  }
+}
 useEffect(() => {
     getdetailsvaliduser();
 }, []);
@@ -39,6 +92,12 @@ useEffect(() => {
     <header>
       <nav>
         <div className="left">
+        <IconButton className="hamburgur" onClick={handelopen}>
+                        <MenuIcon style={{ color: "#fff" }} />
+                    </IconButton>
+                    <Drawer open={dropen} onClose={handleClosedr} >
+                        <Rightheader  logclose={handleClosedr} />
+                    </Drawer>
           <div className="navlogo">
             <NavLink to="/">
               <img src="../../amazon_PNG25.png" alt="" />
@@ -73,16 +132,31 @@ useEffect(() => {
           </div>
 
           {account ? (
-            <Avatar className="avtar2" title={account.fname.toUpperCase()}>
+            <Avatar className="avtar2" onClick={handleClick} title={account.fname.toUpperCase()}>
               {account.fname[0].toUpperCase()}
             </Avatar>
           ) : (
-            <Avatar className="avtar" />
+            <Avatar onClick={handleClick} className="avtar" />
           )}
+          <div className="menu_div">
+                        <Menu
+                        id="basic-menu"
+                            anchorEl={open}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                              'aria-labelledby':'basic-button'
+                            }}
+                             >
+                             <MenuItem onClick={handleClose} style={{ margin: 10 }}>My account</MenuItem>
+                            {account ? <MenuItem onClick={handleClose}  style={{ margin: 10 }} > <LogoutIcon style={{ fontSize: 16, marginRight: 3 }}onClick={logoutuser} /> Logout</MenuItem> : ""}
+                        </Menu>
+                        </div>
+                        <ToastContainer />
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}
 
 export default Navbar;
