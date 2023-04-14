@@ -22,7 +22,7 @@ const responsive = {
 };
 
 const Slide = ({title,products}) => {
-
+  console.log(products);
     return (
         <>
         <div className="products_section">
@@ -49,15 +49,16 @@ const Slide = ({title,products}) => {
             >
                 {
                     products.map((e) => {
+                
                         return (
-                            <NavLink to={`/getproductsone/${e.id}`}>
+                            <NavLink to={`/getproductsone/${e?.id}`}>
                                 <div className="products_items">
                                     <div className="product_img">
-                                        <img src={e.url} alt="product" />
+                                        <img src={e?.url} alt="product" />
                                     </div>
-                                    <p className="products_name">{e.title.shortTitle}</p>
-                                    <p className="products_offer" style={{ color: "#  007185" }}>{e.discount}</p>
-                                    <p className="products_explore">{e.tagline}</p>
+                                    <p className="products_name">{e?.title.shortTitle}</p>
+                                    <p className="products_offer" style={{ color: "#  007185" }}>{e?.discount}</p>
+                                    <p className="products_explore">{e?.tagline}</p>
                                 </div>
                             </NavLink>
                         )

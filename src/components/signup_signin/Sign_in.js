@@ -1,13 +1,16 @@
 import React, { useContext, useState }  from "react";
 import "./Sign_in.css";
 import { NavLink } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Logincontext } from "../Context/ContextProvider";
 const Sign_in = () => 
 {
     const [logdata,setdata]=useState({
       email:"",
       password:""
     });
-
+    const { account, setAccount } = useContext(Logincontext);
     const adddata = (e)=>{
       const{name,value}=e.target;
       setdata((pre) => {
@@ -17,6 +20,44 @@ const Sign_in = () =>
         }
       })
     };
+    const senddata = async (e) => {
+      e.preventDefault();
+
+      const { email, password } = logdata;
+      // console.log(email);
+      try {
+          const res = await fetch("http://localhost:8005/login", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              credentials: 'include',
+              body: JSON.stringify({
+                  email, password
+              })
+          });
+
+
+          const data = await res.json();
+          console.log(data);
+          localStorage.setItem("token", data.tokens[0].token)
+
+          if (res.status === 400 || !data) {
+              // console.log("invalid details");
+              toast.error("Invalid Details 👎!", {
+                  position: "top-center"
+              });
+          } else {
+              setAccount(data);
+              setdata({ ...logdata, email: "", password: "" })
+              toast.success("Login Successfully done 😃!", {
+                  position: "top-center"
+              });
+          }
+      } catch (error) {
+          console.log("login page ka error" + error.message);
+      }
+  };
   return(
   <>
     <section>
@@ -25,7 +66,7 @@ const Sign_in = () =>
           <img src="./blacklogoamazon.png" alt="signupimg" />
         </div>
         <div className="sign_form">
-          <form>
+          <form method='POST'>
             <h1>Sign-In</h1>
             <div className="form_data">
               <label htmlFor="email">Email</label>
@@ -43,7 +84,7 @@ const Sign_in = () =>
                 value={logdata.password}
               />
             </div>
-            <button className="signin_btn">Continue</button>
+            <button className="signin_btn" onClick={senddata}>Continue</button>
           </form>
         </div>
         <div className="create_accountinfo">

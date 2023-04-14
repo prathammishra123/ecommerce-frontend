@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Cart.css";
 import { Divider } from "@mui/material";
-import { useHistory, useParams } from "react-router";
+import {   useParams } from "react-router";
+import { useNavigate} from "react-router-dom";
+import { Logincontext } from "../Context/ContextProvider";
+
 const Cart = () => {
     const { id } = useParams("");
     // console.log(id);
-
-
+    const history =useNavigate();
+    const { account, setAccount } = useContext(Logincontext);
     const [inddata, setIndedata] = useState("");
 
     // console.log([inddata]);
@@ -19,7 +22,7 @@ const Cart = () => {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
-            // credentials: "include"
+            credentials: "include"
         });
 
         const data = await res.json();
@@ -36,6 +39,36 @@ const Cart = () => {
     useEffect(() => {
         setTimeout(getinddata, 1000)
     }, [id]);
+
+
+    const addtocart = async (id) => {
+      console.log(id);
+      const check = await fetch(`http://localhost:8005/addcart/${id}`, {
+          method: "POST",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              inddata
+          }),
+          credentials: "include"
+      });
+      // console.log("wde");
+      const data1 = await check.json();
+
+      if (check.status !== 201) {
+          alert("No data available");
+      } else {
+          // console.log("cart add ho gya hain");
+          console.log(data1);
+          alert("Data added in your cart");
+          setAccount(data1);
+          history("/buynow");
+          console.log(account);
+          
+      }
+  }
   return (
     <div className="cart_section">
       {/* useeefect will call after once page is render than it is called so this is used  */}
@@ -44,7 +77,7 @@ const Cart = () => {
           <div className="left_cart">
             <img src={inddata.detailUrl} alt="cart" />
             <div className="cart_btn">
-              <button className="cart_btn1">Add to Cart</button>
+              <button className="cart_btn1"  onClick={() => addtocart(inddata.id)} >Add to Cart</button>
               <button className="cart_btn2">Buy Now</button>
             </div>
           </div>

@@ -16,6 +16,7 @@ const Maincomp = () => {
   useEffect(() => {
       dispatch(getProducts());
   }, [dispatch])
+  console.log(products);
   return (
   <>
     <div className='home_section'>
