@@ -26,7 +26,7 @@ function App() {
       data ? (
         <>
       <Navbar/>
-      <Newnav/>
+      {/* <Newnav/> */}
       <Routes>
         <Route path="/" element ={<Maincomp/>}/>
         <Route path="/login" element ={<Sign_in/>}/>

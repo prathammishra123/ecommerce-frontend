@@ -1,3 +1,5 @@
+  @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+  
 .cart_section{
     position: relative;
     top: 60px;
@@ -76,18 +78,19 @@
 }
 
 .right_cart h3{
-    font-weight: 500;
+    font-weight: 600;
     font-size: 23px;
     margin-bottom: 5px;
 }
 
 .right_cart h4{
     font-weight: 500;
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    font-family: 'Lobster Two', cursive;
 }
 
 .right_cart .mrp{
+    font-size: larger;
     margin-top: 10px;
 }
 
@@ -110,10 +113,12 @@
 }
 
 .right_cart .description{
+    display: flex;
+    flex-direction: column;
     font-weight: 600;
     color: #111;
     font-size: 16px;
-    margin-top: 3px;
+    margin-top: 30px;
 }
 
 /* media query */

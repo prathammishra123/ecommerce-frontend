@@ -134,7 +134,7 @@ useEffect(() => {
         </div>
         <div className="right">
           <div className="nav_btn">
-            <NavLink to="/login">Sign in</NavLink>
+            {!account && <NavLink to="/login">Sign in</NavLink>}
           </div>
           <div className="cart_btn">
             {account ? (
@@ -170,7 +170,7 @@ useEffect(() => {
                               'aria-labelledby':'basic-button'
                             }}
                              >
-                             <MenuItem onClick={handleClose} style={{ margin: 10 }}>My account</MenuItem>
+                             {account && <MenuItem onClick={handleClose} style={{ margin: 10 }}>{account.fname}</MenuItem>}
                             {account ? <MenuItem onClick={handleClose}  style={{ margin: 10 }} > <LogoutIcon style={{ fontSize: 16, marginRight: 3 }}onClick={logoutuser} /> Logout</MenuItem> : ""}
                         </Menu>
                         </div>

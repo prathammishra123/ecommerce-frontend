@@ -5,6 +5,8 @@ import {   useParams } from "react-router";
 import { useNavigate} from "react-router-dom";
 import { Logincontext } from "../Context/ContextProvider";
 import CircularProgress from '@mui/material/CircularProgress';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 const Cart = () => {
     const { id } = useParams("");
     // console.log(id);
@@ -13,7 +15,12 @@ const Cart = () => {
     const [inddata, setIndedata] = useState("");
 
     // console.log([inddata]);
-
+  const buyknowfun=()=>
+  {
+    toast.success(" Coming Soon 😃!", {
+      position: "top-center"
+  });
+  }
     const getinddata = async () => {
         const res = await fetch(`http://localhost:8005/getproductsone/${id}`, {
             // mode: 'no-cors',
@@ -78,12 +85,12 @@ const Cart = () => {
             <img src={inddata.detailUrl} alt="cart" />
             <div className="cart_btn">
               <button className="cart_btn1"  onClick={() => addtocart(inddata.id)} >Add to Cart</button>
-              <button className="cart_btn2">Buy Now</button>
+              <button className="cart_btn2" onClick={()=>buyknowfun()}>Buy Now</button>
             </div>
           </div>
           <div className="right_cart">
-            <h3>{inddata.title.shortTitle}</h3>
-            <h4>{inddata.title.longTitle}</h4>
+            <h4>{inddata.title.shortTitle}</h4>
+            <h3>{inddata.title.longTitle}</h3>
             <Divider />
             <p className="mrp">₹{inddata.price.mrp}</p>
             <p>
@@ -122,8 +129,10 @@ const Cart = () => {
               </p>
             </div>
             <p className="description">
-              About the Item :{inddata.description}
-              <span
+              <div>
+              About the Item: <br/><br/>{inddata.description}
+              </div>
+              <div
                 style={{
                   color: "#565959",
                   fontSize: "14px",
@@ -132,7 +141,7 @@ const Cart = () => {
                 }}
               >
                 {inddata.price.description}
-              </span>
+              </div>
             </p>
           </div>
         </div>

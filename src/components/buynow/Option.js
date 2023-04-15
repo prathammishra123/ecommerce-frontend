@@ -38,13 +38,11 @@ const Option = ({deletedata,get}) => {
     <div className="add_remove_select" >
     <select>
         <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+        
     </select>
-    <p style={{ cursor: "pointer" }}onClick={()=>removedata(deletedata)}>Delete</p><span>|</span>
-    <p className="forremovemedia">Save Or Later</p><span>|</span>
-    <p className="forremovemedia">See More like this</p>
+    <p style={{ cursor: "pointer", fontSize: "25px" }}onClick={()=>removedata(deletedata)}>Delete</p>
+    {/* <p className="forremovemedia">Save Or Later</p><span>|</span>
+    <p className="forremovemedia">See More like this</p> */}
     <ToastContainer/>
 </div>
   )
