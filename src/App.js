@@ -10,10 +10,21 @@ import Buynow from './components/buynow/Buynow';
 import {Routes,Route} from "react-router-dom"
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
 function App() {
+  const [data,setData]=useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setData(true);
+    }, 2000);
+  }, [])
+
   return (
     <>
-      <ToastContainer />
+    {
+      data ? (
+        <>
       <Navbar/>
       <Newnav/>
       <Routes>
@@ -24,7 +35,17 @@ function App() {
         <Route path="/buynow" element={<Buynow />}/>
       </Routes>
       <Footer/>
-    </>
+        </>
+
+      ):(
+        <div className="circle">
+            <CircularProgress />
+            <h2> Loading....</h2>
+          </div>
+      )
+    }
+      </>
+   
   );
 }
 

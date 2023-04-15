@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Drawer, IconButton, List, ListItem, MenuItem } from '@mui/material';
 import Rightheader from './Rightheader';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useSelector, useDispatch } from "react-redux";
 const Navbar = () => {
   const { account, setAccount } = useContext(Logincontext);
   const history= useNavigate();
@@ -40,6 +41,9 @@ const Navbar = () => {
     }
 }
 const [open, setOpen] = useState(false);
+const [text, setText] = useState("");
+const { products } = useSelector(state => state.getproductsdata);
+const[liopen,setLiopen]=useState(true);
 const handleClick = (event) => {
   setOpen(event.currentTarget);
 }; 
@@ -82,6 +86,10 @@ const logoutuser = async () => {
       
       
   }
+};
+const getText=(iteams)=>{
+ setText(iteams);
+ setLiopen(false);
 }
 useEffect(() => {
     getdetailsvaliduser();
@@ -96,7 +104,7 @@ useEffect(() => {
                         <MenuIcon style={{ color: "#fff" }} />
                     </IconButton>
                     <Drawer open={dropen} onClose={handleClosedr} >
-                        <Rightheader  logclose={handleClosedr} />
+                        <Rightheader  logclose={handleClosedr} userlog={logoutuser} />
                     </Drawer>
           <div className="navlogo">
             <NavLink to="/">
@@ -104,9 +112,23 @@ useEffect(() => {
             </NavLink>
           </div>
           <div className="nav_searchbaar">
-            <input type="text" nam="" id="" />
+            <input type="text" name="" placeholder='Search your products here' onChange={(e)=>getText(e.target.value)}id="" />
             <div className="search_icon">
               <SearchIcon id="search" />
+              {
+                            text &&
+                            <List className="extrasearch" hidden={liopen}>
+                                {
+                                    products.filter(product => product.title.longTitle.toLowerCase().includes(text.toLowerCase())).map(product => (
+                                        <ListItem>
+                                            <NavLink to={`/getproductsone/${product.id}`} onClick={() => setLiopen(true)}>
+                                                {product.title.longTitle}
+                                            </NavLink>
+                                        </ListItem>
+                                    ))
+                                }
+                            </List>
+                        }
             </div>
           </div>
         </div>

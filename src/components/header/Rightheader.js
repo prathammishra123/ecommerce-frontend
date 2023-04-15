@@ -19,7 +19,7 @@ const usestyle = makeStyles({
 })
 
 
-const Rightheader = ({ logclose}) => {
+const Rightheader = ({userlog, logclose}) => {
 
     const imgd = "/india.png"
 
@@ -53,14 +53,14 @@ const Rightheader = ({ logclose}) => {
                     <img src={imgd} alt="india flag" style={{ width: 35, marginLeft: 10 }} />
                 </div>
 
-                {/* {
+                {
                     account ?
                         <div className="flag">
                             <LogoutIcon style={{ fontSize: 18, marginRight: 4 }} />
                             <h3 onClick={() => userlog()} style={{ cursor: "pointer", fontWeight: 500 }}>Log Out</h3>
                         </div>
                         : <NavLink to="/login">Sign in</NavLink>
-                } */}
+                } 
 
 
             </div>

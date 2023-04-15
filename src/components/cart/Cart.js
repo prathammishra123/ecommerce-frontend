@@ -4,7 +4,7 @@ import { Divider } from "@mui/material";
 import {   useParams } from "react-router";
 import { useNavigate} from "react-router-dom";
 import { Logincontext } from "../Context/ContextProvider";
-
+import CircularProgress from '@mui/material/CircularProgress';
 const Cart = () => {
     const { id } = useParams("");
     // console.log(id);
@@ -137,6 +137,10 @@ const Cart = () => {
           </div>
         </div>
       )}
+       {!inddata ? <div className="circle">
+                <CircularProgress />
+                <h2> Loading....</h2>
+            </div> : ""}
     </div>
   );
 };
