@@ -18,8 +18,8 @@ const Banner = () => {
       cycleNavigation={true}
       navButtonsProps={{
           style: {
-              background: "#fff",
-              color: "#494949",
+              background: "FFFFFF",
+              color: "#FFFFFF",
               borderRadius: 0,
               marginTop: -22,
               height: "104px",

@@ -26,7 +26,7 @@ const Slide = ({title,products}) => {
     return (
         <>
         <div className="products_section">
-            <div className="products_deal">
+            <div className="products_deal" id="heading">
                 <h3>{title}</h3>
                 {/* <button className="view_btn">View All</button> */}
             </div>

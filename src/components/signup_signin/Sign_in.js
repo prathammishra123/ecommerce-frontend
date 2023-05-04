@@ -1,11 +1,14 @@
 import React, { useContext, useState }  from "react";
+import { useNavigate } from "react-router-dom";
 import "./Sign_in.css";
 import { NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Logincontext } from "../Context/ContextProvider";
+
 const Sign_in = () => 
 {
+  const navigate = useNavigate();
     const [logdata,setdata]=useState({
       email:"",
       password:""
@@ -47,12 +50,14 @@ const Sign_in = () =>
               toast.error("Invalid Details 👎!", {
                   position: "top-center"
               });
+              
           } else {
               setAccount(data);
               setdata({ ...logdata, email: "", password: "" })
               toast.success("Login Successfully done 😃!", {
                   position: "top-center"
               });
+              navigate("/");
           }
       } catch (error) {
           console.log("login page ka error" + error.message);
@@ -84,12 +89,12 @@ const Sign_in = () =>
                 value={logdata.password}
               />
             </div>
-            <button className="signin_btn" onClick={senddata}>Continue</button>
+            <button className="signin_btn" onClick={senddata} style={{color:'#0066c0'}}>Continue</button>
           </form>
         </div>
         <div className="create_accountinfo">
-          <p>New to Amazon?</p>
-          <button> <NavLink to="/register">Create your Amazon Account</NavLink></button>
+          <p style={{fontSize:'15px'}}>New to ShopGenie?</p>
+          <button > <NavLink to="/register">Create your ShopGenie Account</NavLink></button>
         </div>
       </div>
     </section>

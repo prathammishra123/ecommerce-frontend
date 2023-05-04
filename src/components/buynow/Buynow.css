@@ -3,7 +3,7 @@
     min-height:50vh;
     position: relative;
     top: 60px;
-    background-color: #EAEDED!important;
+    background-color: #7DCBDD!important;
 }
 
 .buynow_section .buynow_container{  
@@ -15,7 +15,7 @@
 
 .buynow_container .left_buy{
     flex: .7;
-    background-color: #fff;
+    background-color: #7DCBDD;
     padding: 0px 20px;
     border-radius: 2px;
 }
@@ -44,6 +44,8 @@
     padding: 10px 5px 20px 15px;
     display: grid;
     grid-template-columns:.8fr 2fr .1fr;
+    background-color: #7DCBDD;
+    
 }
 
 .item_containert img{

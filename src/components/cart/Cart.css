@@ -39,25 +39,25 @@
     cursor: pointer;
 }
 .cart_btn .cart_btn1{
-    background-color:#FFD814;
+    background-color:#93d60c;
     border: none;
     outline: none;
     border-radius: 20px;
     color: #0F1111;
     width: 200px;
     letter-spacing: .5px;
-    font-size: 14px;
+    font-size: 16px;
     box-shadow: 0 0 10px -5px rgba(0,0,0,.5);
 }
 
 .cart_btn .cart_btn1:hover{
-    background-color:#f1cc13;
+    background-color:#35d80d;
 }
 
 .cart_btn .cart_btn2{
-    background-color: #FFA41C;
+    background-color: #9eb507;
     letter-spacing: .5px;
-    font-size: 14px;
+    font-size: 16px;
     color: #0F1111;
     border: none;
     outline: none;
@@ -67,7 +67,7 @@
 }
 
 .cart_btn .cart_btn2:hover{
-    background-color: #ec9615;
+    background-color: #12ea0b;
 }
 
 .cart_container .right_cart{
@@ -78,20 +78,24 @@
 }
 
 .right_cart h3{
-    font-weight: 600;
+    font-weight: 700;
     font-size: 23px;
     margin-bottom: 5px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .right_cart h4{
-    font-weight: 500;
+    font-weight: 600;
     font-size: 2rem;
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .right_cart .mrp{
     font-size: larger;
     margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    color:#0b0000;
+    font-weight: 200;
 }
 
 .right_cart p{
@@ -117,7 +121,7 @@
     flex-direction: column;
     font-weight: 600;
     color: #111;
-    font-size: 16px;
+    font-size: 22px;
     margin-top: 30px;
 }
 

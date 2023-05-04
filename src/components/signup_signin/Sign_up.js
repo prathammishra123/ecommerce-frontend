@@ -76,7 +76,7 @@ const senddata = async (e) => {
                                 value={udata.fname}/>
                         </div>
                         <div className="form_data">
-                            <label htmlFor="email">email</label>
+                            <label htmlFor="email">Email</label>
                             <input type="email" name="email"
                                 id="email" onChange={adddata}
                                 value={udata.email}/>
@@ -102,8 +102,8 @@ const senddata = async (e) => {
                         <button type="submit" className="signin_btn"onClick={senddata}>Continue</button>
                         <Divider />
                         <div className="signin_info">
-                            <p>Already have an account?</p>
-                            <NavLink to="/login">Sign in</NavLink>
+                            <p style={{fontSize:'24px'}}>Already have an account?</p>
+                            <NavLink to="/login" style={{fontSize:'24px'}}>Sign in</NavLink>
                         </div>
                     </form>
                 </div>
