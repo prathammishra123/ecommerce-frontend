@@ -14,8 +14,11 @@ const Sign_in = () =>
       password:""
     });
     const { account, setAccount } = useContext(Logincontext);
+    // to change value of email and password when you enter in box
     const adddata = (e)=>{
+      
       const{name,value}=e.target;
+      console.log(name,value);
       setdata((pre) => {
         return {
           ...pre,
@@ -27,7 +30,6 @@ const Sign_in = () =>
       e.preventDefault();
 
       const { email, password } = logdata;
-      // console.log(email);
       try {
           const res = await fetch("http://localhost:8005/login", {
               method: "POST",

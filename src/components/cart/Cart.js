@@ -13,7 +13,7 @@ const Cart = () => {
     const { id } = useParams("");
     // console.log(id);
     const history =useNavigate();
-    const { account, setAccount } = useContext(Logincontext);
+    const { account, setAccount } = useContext(Logincontext); 
     const [inddata, setIndedata] = useState("");
 
     // console.log([inddata]);

@@ -9,7 +9,8 @@ const data = [
 ]
 const Banner = () => {
   return (
-    <>
+    <> 
+     {/* carousel is used from material UI. */}
       <Carousel className="carasousel"
       autoPlay={true}
       animation="slide"
@@ -27,6 +28,7 @@ const Banner = () => {
       }}
       >
         {
+          // just data is iterated to cover all points.
          data.map((imag,i)=>{
             return(
              <>

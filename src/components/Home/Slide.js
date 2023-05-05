@@ -20,7 +20,7 @@ const responsive = {
         items: 1
     }
 };
-
+// title of slide and products details is passed as props in slide.js
 const Slide = ({title,products}) => {
   console.log(products);
     return (

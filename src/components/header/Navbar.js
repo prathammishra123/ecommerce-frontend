@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 const Navbar = () => {
   const { account, setAccount } = useContext(Logincontext);
   const history= useNavigate();
+  // for left slide open or close ie rightheader.js part
   const [dropen, setDropen] = useState(false);
   const getdetailsvaliduser = async () => {
     const res = await fetch("http://localhost:8005/validuser", {
@@ -40,9 +41,12 @@ const Navbar = () => {
         setAccount(data);
     }
 }
+// for right side avatar part open or close.
 const [open, setOpen] = useState(false);
+// for text in search bar.
 const [text, setText] = useState("");
 const { products } = useSelector(state => state.getproductsdata);
+// for list in search bar
 const[liopen,setLiopen]=useState(true);
 const handleClick = (event) => {
   setOpen(event.currentTarget);

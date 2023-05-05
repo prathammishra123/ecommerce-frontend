@@ -1,13 +1,12 @@
 import React , { useEffect } from 'react'
 import Banner from './Banner'
 import Slide from './Slide';
-// import { products } from './productdata';
 import "./home.css";
 import { Divider, responsiveFontSizes } from '@mui/material';
-import { getProducts } from '../redux/actions/action';
+import { getProducts } from '../redux/actions/action';                                                                                                                                                                                                                                                                                                                                                                                                      
 import{useDispatch,useSelector} from "react-redux";
 const Maincomp = () => {
-
+// using redux to get products details.
   const { products } = useSelector(state => state.getproductsdata);
   console.log(products);
 
