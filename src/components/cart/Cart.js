@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Cart.css";
 import { Divider } from "@mui/material";
 import {   useParams } from "react-router";
-import { useNavigate} from "react-router-dom";
 import { Logincontext } from "../Context/ContextProvider";
 import CircularProgress from '@mui/material/CircularProgress';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { NavLink, useNavigate } from "react-router-dom";
 const date = new Date();
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const Cart = () => {
@@ -24,6 +24,7 @@ const Cart = () => {
   });
   }
     const getinddata = async () => {
+        
         const res = await fetch(`http://localhost:8005/getproductsone/${id}`, {
             // mode: 'no-cors',
             method: "GET",
@@ -43,6 +44,7 @@ const Cart = () => {
             // console.log("ind mila hain");
             setIndedata(data);
         }
+     
     };
 
     useEffect(() => {
@@ -52,6 +54,7 @@ const Cart = () => {
 
     const addtocart = async (id) => {
       console.log(id);
+      if(account){
       const check = await fetch(`http://localhost:8005/addcart/${id}`, {
           method: "POST",
           headers: {
@@ -77,6 +80,10 @@ const Cart = () => {
           console.log(account);
           
       }
+    }
+    else{
+      history("/login");
+    }
   }
   return (
     <div className="cart_section" style={{backgroundColor: '#50B1C8'}}>

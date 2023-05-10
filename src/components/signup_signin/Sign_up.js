@@ -103,8 +103,9 @@ const senddata = async (e) => {
                         <Divider />
                         <div className="signin_info">
                             <p style={{fontSize:'24px'}}>Already have an account?</p>
-                            <NavLink to="/login" style={{fontSize:'24px'}}>Sign in</NavLink>
+                           
                         </div>
+                        <NavLink to="/login" style={{fontSize:'24px'}}>Sign in</NavLink>
                     </form>
                 </div>
             </div>

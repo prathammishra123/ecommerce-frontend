@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import { Logincontext } from '../Context/ContextProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,12 +18,13 @@ const Option = ({deletedata,get}) => {
 
         const data = await res.json();
         console.log(data+"it comes");
-
+        console.log('here'+res.status);
         if (res.status === 400 || !data) {
             console.log("error aai remove time pr");
         } else {
             setAccount(data);
             get();
+            console.log('Item Removed');
             toast.success("Iteam remove from cart 😃!", {
                 position: "top-center"
             });
@@ -33,7 +34,6 @@ const Option = ({deletedata,get}) => {
     }
 
 }
-
   return (
     <div className="add_remove_select" >
     <select>

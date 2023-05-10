@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import { Divider } from "@mui/material";
 import "./Buynow.css";
 import Option from "./Option";
 import Right from "./Right";
 import Subtotal from "./Subtotal";
 import Empty from './Empty';
+import { Logincontext } from "../Context/ContextProvider";
+import { Link } from 'react-router-dom';
+import { NavLink, useNavigate } from "react-router-dom";
 const Buynow = () => 
 {
   const [cartdata, setCartdata] = useState("");
+  const { account, setAccount } = useContext(Logincontext); 
+  const history =useNavigate();
   const getdatabuy = async () => {
     const res = await fetch("http://localhost:8005/cartdetails", {
         method: "GET",
@@ -32,8 +37,7 @@ const Buynow = () =>
     getdatabuy();
 }, []);
   return(
-    <>
-            {cartdata.length ?
+    <>        {cartdata.length ?
                 <div className="buynow_section">
                     <div className="buynow_container">
                         <div className="left_buy">
