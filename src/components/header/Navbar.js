@@ -21,11 +21,13 @@ const Navbar = () => {
   // for left slide open or close ie rightheader.js part
   const [dropen, setDropen] = useState(false);
   const getdetailsvaliduser = async () => {
-    const res = await fetch("http://localhost:8005/validuser", {
+    var token = localStorage.getItem("ecommerce");
+    const res = await fetch("https://shopgenie-backend.onrender.com/validuser", {
         method: "GET",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "ecommerce":token
         },
         credentials: "include"
     });
@@ -65,11 +67,13 @@ const handleClosedr = () => {
 }
 
 const logoutuser = async () => {
-  const res2 = await fetch("http://localhost:8005/logout", {
+  var token = localStorage.getItem("ecommerce");
+  const res2 = await fetch("https://shopgenie-backend.onrender.com/logout", {
       method: "GET",
       headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "ecommerce":token
       },
       credentials: "include"
   });

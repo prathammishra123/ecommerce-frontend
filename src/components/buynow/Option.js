@@ -5,13 +5,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Option = ({deletedata,get}) => {
   const { account, setAccount } = useContext(Logincontext);
+  var token = localStorage.getItem("ecommerce");
   const removedata = async (req,res) => {
     try {
-        const res = await fetch(`http://localhost:8005/remove/${deletedata}`, {
+        const res = await fetch(`https://shopgenie-backend.onrender.com/remove/${deletedata}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ecommerce":token
             },
             credentials: "include"
         });

@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Logincontext } from "../Context/ContextProvider";
+import Cookies from 'universal-cookie';
 
 const Sign_in = () => 
 {
@@ -31,7 +32,8 @@ const Sign_in = () =>
 
       const { email, password } = logdata;
       try {
-          const res = await fetch("http://localhost:8005/login", {
+          const res = await fetch('https://shopgenie-backend.onrender.com/login', {
+            // mode: 'no-cors',
               method: "POST",
               headers: {
                   "Content-Type": "application/json"
@@ -45,7 +47,10 @@ const Sign_in = () =>
 
           const data = await res.json();
           console.log(data);
-          localStorage.setItem("token", data.tokens[0].token)
+          console.log("Here is my token"+data.tokens[0].token);
+          localStorage.setItem("ecommerce", data.tokens[0].token);
+          const cookies = new Cookies();
+          cookies.set('ecommerce',data.tokens[0].token , { path: '/' });
 
           if (res.status === 400 || !data) {
               // console.log("invalid details");

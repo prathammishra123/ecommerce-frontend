@@ -13,12 +13,14 @@ const Buynow = () =>
   const [cartdata, setCartdata] = useState("");
   const { account, setAccount } = useContext(Logincontext); 
   const history =useNavigate();
+  var token = localStorage.getItem("ecommerce");
   const getdatabuy = async () => {
-    const res = await fetch("http://localhost:8005/cartdetails", {
+    const res = await fetch("https://shopgenie-backend.onrender.com/cartdetails", {
         method: "GET",
         headers: {
             Accept:"application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "ecommerce":token
         },
         credentials:"include"
     });

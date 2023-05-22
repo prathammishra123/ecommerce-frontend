@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { NavLink, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 const date = new Date();
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const Cart = () => {
@@ -24,13 +25,16 @@ const Cart = () => {
   });
   }
     const getinddata = async () => {
+      var token = localStorage.getItem("ecommerce");
         
-        const res = await fetch(`http://localhost:8005/getproductsone/${id}`, {
+        const res = await fetch(`https://shopgenie-backend.onrender.com/getproductsone/${id}`, {
             // mode: 'no-cors',
             method: "GET",
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ecommerce":token
+               
             },
             credentials: "include"
         });
@@ -54,12 +58,15 @@ const Cart = () => {
 
     const addtocart = async (id) => {
       console.log(id);
+      console.log(localStorage.getItem("ecommerce"));
+      var token = localStorage.getItem("ecommerce");
       if(account){
-      const check = await fetch(`http://localhost:8005/addcart/${id}`, {
+      const check = await fetch(`https://shopgenie-backend.onrender.com/addcart/${id}`, {
           method: "POST",
           headers: {
               Accept: "application/json",
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "ecommerce":token
           },
           body: JSON.stringify({
               inddata

@@ -1,6 +1,6 @@
 export const getProducts = ()=> async(dispatch)=>{
     try {
-        const data = await fetch('http://localhost:8005/getproducts',{
+        const data = await fetch('https://shopgenie-backend.onrender.com/getproducts',{
                 method:"GET",
                 headers:{
                     "Content-Type":"application/json"

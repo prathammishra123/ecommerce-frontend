@@ -29,7 +29,7 @@ const senddata = async (e) => {
 
     const { fname, email, mobile, password, cpassword } = udata;
     try {
-        const res = await fetch("http://localhost:8005/register", {
+        const res = await fetch("https://shopgenie-backend.onrender.com/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
