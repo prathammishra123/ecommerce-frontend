@@ -81,7 +81,9 @@ const Cart = () => {
       } else {
           // console.log("cart add ho gya hain");
           console.log(data1);
-          alert("Data added in your cart");
+          toast.success("Item added to your cart 😃!", {
+            position: "top-center"
+        });
           setAccount(data1);
           history("/buynow");
           console.log(account);

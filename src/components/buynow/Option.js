@@ -27,7 +27,7 @@ const Option = ({deletedata,get}) => {
             setAccount(data);
             get();
             console.log('Item Removed');
-            toast.success("Iteam remove from cart 😃!", {
+            toast.success("Item remove from cart 😃!", {
                 position: "top-center"
             });
         }
